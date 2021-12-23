@@ -6,7 +6,7 @@ import netlifyIdentity from 'netlify-identity-widget'
 import { AuthContext } from '../contexts/authContext'
 
 export default function Login() {
-  const { user, authReady } = useContext(AuthContext)
+  const { user, authReady, widgetOpen } = useContext(AuthContext)
 
   useEffect(() => {
     if (user && authReady) {
@@ -14,8 +14,14 @@ export default function Login() {
       return
     }
 
-    netlifyIdentity.open()
-  }, [user, authReady])
+    console.log(widgetOpen)
+
+    if (!widgetOpen) {
+      setTimeout(() => {
+        netlifyIdentity.open()
+      }, 1000)
+    }
+  }, [user, authReady, widgetOpen])
 
   return (
     <div>
