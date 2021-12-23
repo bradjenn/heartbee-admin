@@ -11,9 +11,12 @@ export default function Login() {
   useEffect(() => {
     if (user && authReady) {
       Router.push('/')
-    } else {
-      netlifyIdentity.open('login')
+      return
     }
+
+    setTimeout(() => {
+      netlifyIdentity.open()
+    }, 2000)
   }, [user, authReady])
 
   return (
