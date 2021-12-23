@@ -14,9 +14,7 @@ export default function Login() {
       return
     }
 
-    setTimeout(() => {
-      netlifyIdentity.open()
-    }, 2000)
+    netlifyIdentity.open()
   }, [user, authReady])
 
   return (
